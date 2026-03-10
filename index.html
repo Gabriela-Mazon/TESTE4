@@ -12,7 +12,8 @@
             margin: 0;
             height: 100vh;
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1a0b16 0%, #4a1936 50%, #1a0b16 100%);
+            /* Azul marinho profundo para destacar o neon */
+            background: radial-gradient(circle at center, #0a1128 0%, #02050e 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -24,28 +25,31 @@
         /* Corações Flutuantes no Fundo */
         .heart-bg {
             position: absolute;
-            color: rgba(255, 105, 180, 0.2);
+            color: rgba(255, 105, 180, 0.3);
             font-size: 20px;
-            animation: float 6s linear infinite;
+            animation: float 7s linear infinite;
             z-index: 0;
             top: -10%;
+            pointer-events: none;
         }
 
         @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
         .card {
             width: 90%;
             max-width: 820px;
-            background: rgba(20, 10, 20, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(13, 17, 23, 0.9);
+            backdrop-filter: blur(15px);
             border-radius: 24px;
-            box-shadow: 0 0 40px rgba(255, 20, 147, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 133, 161, 0.2);
             padding: 35px;
             z-index: 1;
-            border: 1px solid rgba(255, 20, 147, 0.2);
+            border: 1px solid rgba(255, 20, 147, 0.3);
         }
 
         .header {
@@ -59,20 +63,21 @@
             font-size: 22px;
             font-weight: 600;
             color: #ff85a1;
-            text-shadow: 0 0 10px rgba(255, 133, 161, 0.5);
+            text-shadow: 0 0 15px rgba(255, 133, 161, 0.6);
         }
 
         .counter {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
-            background: rgba(255, 133, 161, 0.2);
-            padding: 5px 15px;
+            background: rgba(255, 133, 161, 0.15);
+            padding: 6px 18px;
             border-radius: 20px;
             color: #ff85a1;
+            border: 1px solid rgba(255, 133, 161, 0.3);
         }
 
         .terminal {
-            background: rgba(10, 5, 10, 0.9);
+            background: #05070a;
             border-radius: 12px;
             padding: 20px;
             height: 380px;
@@ -80,19 +85,23 @@
             font-family: "JetBrains Mono", monospace;
             font-size: 14px;
             line-height: 1.6;
-            box-shadow: inset 0 0 15px rgba(255, 20, 147, 0.1);
-            border: 1px solid rgba(255, 133, 161, 0.1);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 1);
+            border: 1px solid rgba(255, 133, 161, 0.15);
         }
 
-        .line { margin: 6px 0; }
-        .pink { color: #ff85a1; }
+        .line { margin: 8px 0; border-left: 2px solid transparent; padding-left: 8px; }
+        .pink { color: #ff85a1; font-weight: bold; }
         .cyan { color: #7dd3fc; }
+        .gold { color: #ffd700; }
 
         .input-area {
             display: flex;
             margin-top: 20px;
             font-family: "JetBrains Mono";
             align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .prompt { color: #ff85a1; margin-right: 10px; font-weight: bold; }
@@ -109,14 +118,15 @@
 
         .footer {
             margin-top: 15px;
-            font-size: 12px;
-            opacity: .6;
+            font-size: 11px;
+            opacity: .5;
             text-align: center;
-            letter-spacing: 1px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Scrollbar Personalizada */
-        .terminal::-webkit-scrollbar { width: 6px; }
+        /* Scrollbar */
+        .terminal::-webkit-scrollbar { width: 4px; }
         .terminal::-webkit-scrollbar-thumb { background: #ff85a1; border-radius: 10px; }
     </style>
 </head>
@@ -124,13 +134,13 @@
 
 <div class="card">
     <div class="header">
-        <div class="title">❤️ MyHeart_Terminal v3.0</div>
-        <div class="counter" id="counter">Caminhando juntos...</div>
+        <div class="title">❤️ Relationship_System v3.1</div>
+        <div class="counter" id="counter">Carregando...</div>
     </div>
 
     <div class="terminal" id="terminal">
-        <div class="line">Sessão iniciada: <span class="pink">Feliz 3 meses, meu amor!</span></div>
-        <div class="line">Digite <span class="cyan">'help'</span> para descobrir nossos segredos.</div>
+        <div class="line">Sistema inicializado com sucesso. <span class="pink">Feliz 3 meses!</span></div>
+        <div class="line">Digite <span class="cyan">'help'</span> para explorar nossas memórias.</div>
         <div class="line">--------------------------------------------------</div>
     </div>
 
@@ -140,44 +150,42 @@
     </div>
 
     <div class="footer">
-        Feito com ❤️ por você sabe quem
+        conectado ao servidor do seu coração
     </div>
 </div>
 
 <script>
-    // --- Configuração da Data ---
-    const startDate = new Date("2025-12-10"); // Altere para a data exata do início
+    // --- Configuração da Data (Ajuste aqui) ---
+    const startDate = new Date("2024-12-10"); 
 
     function updateCounter() {
         const now = new Date();
         const diff = now - startDate;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("counter").innerHTML = `✨ ${days} dias de nós dois`;
+        document.getElementById("counter").innerHTML = `✨ ${days} Dias Juntos`;
     }
     setInterval(updateCounter, 1000);
     updateCounter();
 
-    // --- Sistema de Corações de Fundo ---
+    // --- Corações de Fundo ---
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('heart-bg');
         heart.innerHTML = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 3 + 3 + 's';
-        heart.style.opacity = Math.random();
+        heart.style.animationDuration = Math.random() * 4 + 4 + 's';
         document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
+        setTimeout(() => heart.remove(), 8000);
     }
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 500);
 
     // --- Lógica do Terminal ---
     const terminal = document.getElementById("terminal");
     const input = document.getElementById("cmd");
 
-    function print(text, color = "") {
+    function print(text) {
         const div = document.createElement("div");
         div.className = "line";
-        if (color) div.style.color = color;
         div.innerHTML = text.replace(/\n/g, '<br>');
         terminal.appendChild(div);
         terminal.scrollTop = terminal.scrollHeight;
@@ -185,49 +193,50 @@
 
     const commands = {
         help: `Comandos disponíveis:
-        <span class="cyan">about</span>     - Sobre o nosso sistema
+        <span class="cyan">about</span>     - Resumo do sistema
         <span class="cyan">memories</span>  - Nossa linha do tempo
-        <span class="cyan">future</span>    - O que ainda virá
+        <span class="cyan">distance</span>  - Sobre os quilômetros que nos separam
         <span class="cyan">love</span>      - Diagnóstico do coração
-        <span class="cyan">secret</span>    - Uma mensagem especial
-        <span class="cyan">clear</span>     - Limpa o terminal`,
+        <span class="cyan">secret</span>    - Uma mensagem especial`,
 
-        about: `System: <span class="pink">Nossa História</span>
-        Versão: 3 Meses (O melhor trimestre da minha vida)
-        Status: <span class="pink">Cada dia mais apaixonado(a)</span>
-        Uptime: ${Math.floor((new Date() - startDate)/(1000*60*60*24))} dias de pura felicidade.`,
+        about: `<span class="pink">Log de Sistema:</span>
+        Versão: 3 Meses (Trimestre de Ouro)
+        Dono: O amor da minha vida
+        Status: <span class="pink">Completamente apaixonado(a)</span>`,
 
-        memories: `<span class="pink">git log --our-history:</span>
-        - <b>Dezembro:</b> O começo de tudo, o melhor presente.
-        - <b>Janeiro:</b> Descobrindo cada detalhe seu.
-        - <b>Fevereiro:</b> A certeza de que eu quero você sempre.
-        - <b>Março:</b> 3 meses de uma história infinita. ❤️`,
+        memories: `<span class="gold">git log --our-history:</span>
+        - <b>Mês 1:</b> A magia do início e os primeiros "eu te amo".
+        - <b>Mês 2:</b> A cumplicidade aumentando a cada dia.
+        - <b>Mês 3:</b> A certeza de que esse terminal não tem fim. ❤️`,
 
-        future: `<b>Roadmap 2026 e Além:</b>
-        [██████████] 100% - Te amar hoje
-        [████████░░] 80%  - Próximas viagens
-        [▓▓▓▓▓▓▓▓▓▓] ∞%   - Construir uma vida juntos`,
+        distance: `<span class="pink">Calculando rota...</span> 📍
+        A distância é apenas um número que tenta, sem sucesso, nos separar. 
+        Ela é passageira, mas o que eu sinto por você é permanente. 
+        Cada km de distância se torna um motivo a mais para eu querer estar do seu lado. 
+        <span class="gold">O "em breve" é a minha palavra favorita.</span>`,
 
         love: `Analisando sentimentos...
-        [SUCESSO] Batimentos cardíacos: Acelerados por você
-        [SUCESSO] Nível de saudade: Constante
-        [ALERTA] Nível de fofura: Acima do limite permitido ❤️`,
+        [SUCCESS] Batimentos: 120bpm (ao ver sua foto)
+        [SUCCESS] Conexão: Criptografada e eterna
+        [ALERTA] Saudade detectada em níveis críticos.`,
 
-        secret: `<span style="font-size: 1.2em">Obrigado por esses 3 meses!</span>
-        Você é a melhor parte do meu dia. Eu te amo daqui até a lua! 🌙✨`
+        secret: `Eu não mudaria nada nesses últimos 3 meses. 
+        Obrigado por ser meu porto seguro. Eu te amo muito! 🌙✨`
     };
 
     input.addEventListener("keydown", function(e) {
         if (e.key === "Enter") {
             const cmd = input.value.toLowerCase().trim();
+            if (cmd === "") return;
+
             print(`<span class="pink">amor@nosso-futuro:~$</span> ${cmd}`);
 
-            if (cmd === "clear") {
-                terminal.innerHTML = "";
-            } else if (commands[cmd]) {
+            if (commands[cmd]) {
                 print(commands[cmd]);
-            } else if (cmd !== "") {
-                print("Comando não reconhecido. Tente 'help' para ver as opções.", "#ff4b2b");
+            } else if (cmd === "clear") {
+                print("O comando 'clear' foi desativado para manter nossas memórias na tela! ❤️");
+            } else {
+                print("Comando não reconhecido. Digite 'help'.");
             }
 
             input.value = "";
