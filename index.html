@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossos 3 Meses ❤️</title>
+    <title>3 Meses com Você ❤️</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
@@ -12,6 +12,7 @@
             margin: 0;
             height: 100vh;
             font-family: 'Inter', sans-serif;
+            /* Fundo Azul Marinho Profundo */
             background: radial-gradient(circle at center, #050a14 0%, #020408 100%);
             display: flex;
             align-items: center;
@@ -21,6 +22,7 @@
             position: relative;
         }
 
+        /* Corações Neon */
         .heart-bg {
             position: absolute;
             color: #ff69b4;
@@ -63,13 +65,14 @@
             font-size: 20px;
             font-weight: 600;
             color: #ff85a1;
-            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 133, 161, 0.4);
         }
 
-        .counter {
+        .counter-top {
             font-size: 14px;
             color: #7dd3fc;
             font-family: 'JetBrains Mono';
+            font-weight: bold;
         }
 
         .terminal {
@@ -87,17 +90,23 @@
         .line { margin: 8px 0; }
         .pink { color: #ff85a1; font-weight: bold; }
         .cyan { color: #7dd3fc; }
+        .gold { color: #ffd700; }
+
         .distance-msg { 
             background: rgba(255, 133, 161, 0.1); 
-            padding: 10px; 
+            padding: 12px; 
             border-radius: 5px; 
             border-left: 3px solid #ff85a1;
+            margin: 10px 0;
         }
 
         .input-area {
             display: flex;
             margin-top: 20px;
             align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 8px;
         }
 
         .prompt { color: #ff85a1; margin-right: 12px; font-weight: bold; }
@@ -118,25 +127,26 @@
             opacity: .4;
             text-align: center;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .terminal::-webkit-scrollbar { width: 4px; }
-        .terminal::-webkit-scrollbar-thumb { background: #1e293b; }
+        .terminal::-webkit-scrollbar-thumb { background: #ff85a1; border-radius: 10px; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="header">
-        <div class="title">💖 HEART_SHELL v3.2</div>
-        <div id="counter" class="counter">Calculando...</div>
+        <div class="title">💖 HEART_SHELL v3.3</div>
+        <div id="counter" class="counter-top">Calculando...</div>
     </div>
 
     <div class="terminal" id="terminal">
         <div class="line">Sistema inicializado... <span class="cyan">[OK]</span></div>
-        <div class="line">Data de início detectada: <span class="pink">10/12/2025</span></div>
+        <div class="line">Data de início: <span class="pink">10/12/2025</span></div>
         <div class="line">--------------------------------------------------</div>
-        <div class="line">Digite <span class="pink">'help'</span> para ver os comandos, ou <span class="pink">'tempo'</span> para ver quanto tempo estamos juntos.</div>
+        <div class="line">Olá, meu amor! Digite <span class="pink">'help'</span> para explorar o terminal.</div>
     </div>
 
     <div class="input-area">
@@ -145,23 +155,21 @@
     </div>
 
     <div class="footer">
-        A distância é apenas um detalhe temporário.
+        conectado ao seu coração
     </div>
 </div>
 
 <script>
-    // Correção: Mês no JS começa em 0 (Dezembro = 11)
+    // Configuração da data: 10 de Dezembro de 2025
     const startDate = new Date(2025, 11, 10, 0, 0, 0); 
 
     function getFullTime() {
         const now = new Date();
         const diff = now - startDate;
-        
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
-
         return `${days} dias, ${hours}h ${minutes}m ${seconds}s`;
     }
 
@@ -169,9 +177,8 @@
         const now = new Date();
         const diff = now - startDate;
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("counter").innerHTML = `${days} DIAS ❤️`;
+        document.getElementById("counter").innerHTML = `${days} DIAS JUNTOS ❤️`;
     }
-    
     setInterval(updateCounter, 1000);
     updateCounter();
 
@@ -190,26 +197,46 @@
     const input = document.getElementById("cmd");
 
     const commands = {
-        help: `Comandos:
-        <span class="cyan">about</span>     - Resumo da jornada
-        <span class="cyan">tempo</span>     - Contador detalhado
+        help: `Comandos disponíveis:
+        <span class="cyan">about</span>     - Resumo do sistema
+        <span class="cyan">tempo</span>     - Tempo exato juntos
+        <span class="cyan">memories</span>  - Nossa linha do tempo
         <span class="cyan">distance</span>  - Sobre a distância
-        <span class="cyan">love</span>      - Nível de amor
-        <span class="cyan">secret</span>    - Mensagem secreta`,
+        <span class="cyan">love</span>      - Diagnóstico do coração
+        <span class="cyan">secret</span>    - Mensagem especial`,
 
-        about: `Status: <span class="pink">3 meses de felicidade.</span>
-        Início: 10/12/2025
-        Linguagem: Amor Nativo v3.2`,
+        about: `System: <span class="pink">Nossa História</span>
+        Versão: 3 Meses (O melhor trimestre da minha vida)
+        Status: <span class="pink">Cada dia mais apaixonado(a)</span>
+        Uptime: Detectando felicidade infinita...`,
+
+        tempo: `<span class="cyan">Contagem precisa de amor:</span>
+        <span class="gold">${getFullTime()}</span>
+        Cada segundo valeu a pena.`,
+
+        memories: `<span class="pink">git log --our-history:</span>
+        - <b>Dezembro:</b> O começo de tudo, o melhor presente.
+        - <b>Janeiro:</b> Descobrindo cada detalhe seu.
+        - <b>Fevereiro:</b> A certeza de que eu quero você sempre.
+        - <b>Março:</b> 3 meses de uma história infinita. ❤️`,
 
         distance: `<div class="distance-msg">
-        A distância é passageira. Logo, logo, o 'bom dia' será 
-        sussurrado e não apenas digitado. Aguenta firme!
+        <span class="pink">Sobre a distância:</span><br>
+        A distância é apenas um número que tenta, sem sucesso, nos separar. 
+        Ela é passageira, mas o que eu sinto por você é permanente. 
+        Cada km de distância se torna um motivo a mais para eu querer estar do seu lado. 
+        <span class="gold">O "em breve" é a minha palavra favorita.</span>
         </div>`,
 
-        love: `Love: [██████████████████] 1000%
-        Saudade: [████████████████░░] 99%`,
+        love: `Analisando sentimentos...
+        [SUCCESS] Batimentos: 120bpm (ao ver sua foto)
+        [SUCCESS] Conexão: Criptografada e eterna
+        [ALERTA] Saudade detectada em níveis críticos. ❤️`,
 
-        secret: `Três meses é pouco perto de tudo que eu quero viver com você!`
+        secret: `Eu não mudaria nada nesses últimos 3 meses. 
+        Obrigado por ser meu porto seguro. Eu te amo muito! 🌙✨
+        <br><br>
+        <span class="pink">P.S. Três meses é pouco perto de tudo que eu quero viver com você!</span>`
     };
 
     input.addEventListener("keydown", function(e) {
@@ -222,23 +249,21 @@
             line.innerHTML = `<span class="pink">nós@amor:~$</span> ${cmd}`;
             terminal.appendChild(line);
 
-            if (cmd === "tempo") {
-                const timeLine = document.createElement("div");
-                timeLine.className = "line";
-                timeLine.innerHTML = `<span class="cyan">Estamos juntos há:</span><br>${getFullTime()}`;
-                terminal.appendChild(timeLine);
-            } else if (cmd === "clear") {
-                const msg = document.createElement("div");
-                msg.innerHTML = "Comando desativado para manter nossas memórias. ❤️";
-                terminal.appendChild(msg);
+            if (cmd === "clear") {
+                const clearMsg = document.createElement("div");
+                clearMsg.className = "line";
+                clearMsg.innerHTML = "<span class='cyan'>O comando 'clear' foi bloqueado para manter nossas memórias intactas! ❤️</span>";
+                terminal.appendChild(clearMsg);
             } else if (commands[cmd]) {
-                const resp = document.createElement("div");
-                resp.innerHTML = commands[cmd].replace(/\n/g, '<br>');
-                terminal.appendChild(resp);
+                const response = document.createElement("div");
+                response.className = "line";
+                response.innerHTML = commands[cmd].replace(/\n/g, '<br>');
+                terminal.appendChild(response);
             } else {
-                const err = document.createElement("div");
-                err.innerHTML = "Comando inexistente.";
-                terminal.appendChild(err);
+                const error = document.createElement("div");
+                error.className = "line";
+                error.innerHTML = "Comando não reconhecido. Digite 'help'.";
+                terminal.appendChild(error);
             }
 
             input.value = "";
@@ -246,5 +271,6 @@
         }
     });
 </script>
+
 </body>
 </html>
